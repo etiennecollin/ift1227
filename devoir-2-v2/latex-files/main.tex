@@ -1,0 +1,114 @@
+\input{/Users/etiennecollin/github/latex-templates/paths}
+\path{macOS}
+
+\documentclass[12pt]{article}
+\usepackage[english,french]{babel}
+\usepackage{\basepath/packages}
+\usepackage[style=ieee,backref=true,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}
+
+% DOCUMENT USER SETTINGS ==============================================================================================
+\newcommand{\docAuthorName}{Etienne Collin | 20237904\\Ange Lilian Tchomtchoua Tokam | 20230129\\Justin Villeneuve | 20132792}
+\newcommand{\docAuthorStudentNumber}{20237904}
+\newcommand{\docAuthorTitlePage}{\docAuthorName}
+\newcommand{\docClass}{Architecture des ordinateurs}
+\newcommand{\docClassInstructor}{Professeure Alena Tsikhanovich}
+\newcommand{\docClassNumber}{IFT1227}
+\newcommand{\docClassSection}{Section A}
+\newcommand{\docClassSemester}{H2023}
+\newcommand{\docDueDate}{12 Mars 2023}
+\newcommand{\docDueTime}{23:59}
+\newcommand{\docSubtitle}{Conception VHDL}
+\newcommand{\docTitle}{Devoir 2}
+\input{\template/basic/page_settings}       % Imports custom page settings
+\input{\template/basic/environment}         % Imports custom environments and definitions
+
+% \fancyhf[HR]{\docClassTime}               % Removes student number from right header
+
+% SOURCE ==============================================================================================================
+\begin{document}
+\input{\template/basic/title_page_udem}
+
+% START OF DOCUMENT ===================================================================================================
+
+\section{Conception des circuits combinatoires}
+\subsection{Table de vérité}
+Concevons la table de vérité du convertisseur de couleurs.
+\singlespacing
+\begin{center}
+	\begin{tabular}{|c|c|c|c||c|c|c|c|}
+		\hline
+		b3m1 & b2m1 & b1m1 & b0m1 & b3m2 & b2m2 & b1m2 & b0m2 \\ \hline
+		0    & 0    & 0    & 0    & 0    & 0    & 0    & 0    \\ \hline
+		0    & 0    & 0    & 1    & 1    & 1    & 1    & 1    \\ \hline
+		0    & 0    & 1    & 0    & 0    & 1    & 0    & 0    \\ \hline
+		0    & 0    & 1    & 1    & 0    & 0    & 1    & 1    \\ \hline
+		0    & 1    & 0    & 0    & 0    & 1    & 0    & 1    \\ \hline
+		0    & 1    & 0    & 1    & 0    & 0    & 1    & 0    \\ \hline
+		0    & 1    & 1    & 0    & 0    & 0    & 0    & 1    \\ \hline
+		0    & 1    & 1    & 1    & 1    & 1    & 1    & 0    \\ \hline
+		1    & 0    & 0    & 0    & 0    & 0    & 0    & 0    \\ \hline
+		1    & 0    & 0    & 1    & 0    & 1    & 1    & 0    \\ \hline
+		1    & 0    & 1    & 0    & 1    & 1    & 0    & 0    \\ \hline
+		1    & 0    & 1    & 1    & 1    & 0    & 0    & 0    \\ \hline
+		1    & 1    & 0    & 0    & 0    & 1    & 1    & 1    \\ \hline
+		1    & 1    & 0    & 1    & 1    & 0    & 1    & 0    \\ \hline
+		1    & 1    & 1    & 0    & 1    & 0    & 0    & 1    \\ \hline
+		1    & 1    & 1    & 1    & 0    & 0    & 0    & 0    \\ \hline
+	\end{tabular}
+\end{center}
+\doublespacing
+
+\pagebreak
+\subsection{Partie A}
+\vspace*{-12pt}
+Voici les schémas du circuit modélisé de manière comportementale générés par \textsl{Quartus}. Deux représentations des bus sont présentées. Dans la première, les bus son "compressés" et dans l'autre, ils ne le sont pas.
+\begin{figure}[H]
+	\simpleimage[5/10]{part_1_a1.pdf}
+	\simpleimage[4/10]{part_1_a2.pdf}
+\end{figure}
+
+\pagebreak
+\subsection{Partie B}
+Maintenant, afin de représenter les sorties à l'aide de multiplexeurs 8:1, "compressons" la table de vérité en utilisant le bit d'entrée \textsl{b0m1} afin de représenter les bits de sortie.
+\singlespacing
+\begin{center}
+	\begin{tabular}{|c|c|c||c|c|c|c|}
+		\hline
+		b3m1 & b2m1 & b1m1 & b3m2         & b2m2         & b1m2 & b0m2         \\ \hline
+		0    & 0    & 0    & b0m1         & b0m1         & b0m1 & b0m1         \\ \hline
+		0    & 0    & 1    & 0            & $\lnot$ b0m1 & b0m1 & b0m1         \\ \hline
+		0    & 1    & 0    & 0            & $\lnot$ b0m1 & b0m1 & $\lnot$ b0m1 \\ \hline
+		0    & 1    & 1    & b0m1         & b0m1         & b0m1 & $\lnot$ b0m1 \\ \hline
+		1    & 0    & 0    & 0            & b0m1         & b0m1 & 0            \\ \hline
+		1    & 0    & 1    & 1            & $\lnot$ b0m1 & 0    & 0            \\ \hline
+		1    & 1    & 0    & b0m1         & $\lnot$ b0m1 & 1    & $\lnot$ b0m1 \\ \hline
+		1    & 1    & 1    & $\lnot$ b0m1 & 0            & 0    & $\lnot$ b0m1 \\ \hline
+	\end{tabular}
+\end{center}
+\small{\textsl{$\lnot$ est le symbole utilisé pour le complément, car sinon, la barre n'est bien visible dans le tableau.}}
+\doublespacing
+Voici le schéma du circuit modélisé de manière structurelle généré par \textsl{Quartus}.
+\imagecenter[7/10]{part_1_b.pdf}
+
+\pagebreak
+\section{Circuits logiques séquentiels}
+\subsection{Partie A}
+Voici le diagramme des états que nous avons créé.
+\imagecenter[1]{part_2_a_state_diagram.png}
+
+\pagebreak
+\subsection{Partie B}
+Voici le schéma du circuit, ainsi que le diagramme des états généré par \textsl{Quartus}.
+\imagecenter[1]{part_2_b.pdf}
+\imagecenter[1]{part_2_b_state_diagram.png}
+% END OF DOCUMENT =====================================================================================================
+% % List of figures/tables
+% \pagebreak
+% \begin{appendix}
+%   \phantomsection\listoffigures
+%   \phantomsection\listoftables
+% \end{appendix}
+
+% \pagebreak\phantomsection\printbibliography[heading=bibintoc]
+%\nocite{}
+\end{document}

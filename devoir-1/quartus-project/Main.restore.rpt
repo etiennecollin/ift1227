@@ -1,0 +1,79 @@
+Restore Archived Project report for Main
+Mon Feb 13 19:04:06 2023
+Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Restore Archived Project Summary
+  3. Restore Archived Project Messages
+  4. Files Restored
+  5. Files Not Restored
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------+
+; Restore Archived Project Summary                                        ;
++---------------------------------+---------------------------------------+
+; Restore Archived Project Status ; Successful - Mon Feb 13 19:04:06 2023 ;
+; Revision Name                   ; Main                                  ;
+; Top-level Entity Name           ; Main                                  ;
+; Family                          ; MAX 10                                ;
++---------------------------------+---------------------------------------+
+
+
++-----------------------------------+
+; Restore Archived Project Messages ;
++-----------------------------------+
+Info: Successfully restored 'C:/Users/colli/Downloads/IFT_1227_full/Devoir1final_tmp_archive.qar' into the 'C:/Users/colli/Downloads/devoir-1/' directory
+Info: Generated report 'Main.restore.rpt'
+
+
++------------------------------+
+; Files Restored               ;
++------------------------------+
+; File Name                    ;
++------------------------------+
+; qar_info.json                ;
+; Dec4x16.bsf                  ;
+; Dec4x16.qip                  ;
+; Dec4x16.v                    ;
+; Devoir1final.qpf             ;
+; Main.bdf                     ;
+; Main.qsf                     ;
+; Main_assignment_defaults.qdf ;
+; Mux8.bsf                     ;
+; Mux8.qip                     ;
+; Mux8.v                       ;
++------------------------------+
+
+
++--------------------+
+; Files Not Restored ;
++--------------------+
+; File Name          ;
++--------------------+
+
+

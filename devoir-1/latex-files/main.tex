@@ -1,0 +1,202 @@
+\input{/Users/etiennecollin/github/latex-templates/paths}
+\path{macOS}
+
+\documentclass[12pt]{article}
+\usepackage[english,french]{babel}
+\usepackage{\basepath/packages}
+\usepackage[style=ieee,backref=true,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}
+
+% DOCUMENT USER SETTINGS ==============================================================================================
+\newcommand{\docAuthorName}{Etienne Collin | 20237904\\Ange Lilian Tchomtchoua Tokam | 20230129\\Justin Villeneuve | 20132792}
+\newcommand{\docAuthorStudentNumber}{20237904}
+\newcommand{\docAuthorTitlePage}{\docAuthorName}
+\newcommand{\docClass}{Architecture des ordinateurs}
+\newcommand{\docClassInstructor}{Professeure Alena Tsikhanovich}
+\newcommand{\docClassNumber}{IFT1227}
+\newcommand{\docClassSection}{Section A}
+\newcommand{\docClassSemester}{H2023}
+\newcommand{\docDueDate}{16 Février 2023}
+\newcommand{\docDueTime}{23:59}
+\newcommand{\docSubtitle}{Logique numérique et Circuits combinatoires}
+\newcommand{\docTitle}{Devoir 1}
+\input{\template/basic/page_settings}       % Imports custom page settings
+\input{\template/basic/environment}         % Imports custom environments and definitions
+
+% \fancyhf[HR]{\docClassTime}               % Removes student number from right header
+
+% SOURCE ==============================================================================================================
+\begin{document}
+\input{\template/basic/title_page_udem}
+
+% START OF DOCUMENT ===================================================================================================
+
+\section{Réduction de la logique numérique}
+En utilisant la méthode tabulaire de Quine-McCluskey, simplifiez la function logique suivante:
+\begin{equation*}
+	F(A,B,C,D) = \sum(0,9,13,15) + \sum_d(2,3,4,6,11)
+\end{equation*}
+
+Commençons par créer le tableau contenant les \textsl{minterms} (sans passer par une table de vérité, le
+\textsl{minterm} $x$ sera la représentation binaire de $x$) et simplifions en utilisant la technique de Quine-McCluskey.
+
+\vspace*{-24pt}\singlespacing\noindent
+\begin{tabular}[t]{|c|c|c|}
+	\hline
+	\textbf{Nombre de 1s} & \textbf{Minterm} \\
+	\hline
+	0                     & 0000\checkmark   \\
+	\hline
+	\multirow{2}{*}{1}    & 0010\checkmark   \\
+	                      & 0100\checkmark   \\
+	\hline
+	\multirow{3}{*}{2}    & 0011\checkmark   \\
+	                      & 0110\checkmark   \\
+	                      & 1001\checkmark   \\
+	\hline
+	\multirow{2}{*}{3}    & 1011\checkmark   \\
+	                      & 1101\checkmark   \\
+	\hline
+	4                     & 1111\checkmark   \\
+	\hline
+\end{tabular}
+\begin{tabular}[t]{|c|c|c|}
+	\hline
+	\textbf{Nombre de 1s} & \textbf{Minterm} \\
+	\hline
+	\multirow{2}{*}{0}    & 00-0\checkmark   \\
+	                      & 0-00\checkmark   \\
+	\hline
+	\multirow{3}{*}{1}    & 001-*            \\
+	                      & 0-10\checkmark   \\
+	                      & 01-0\checkmark   \\
+	\hline
+	\multirow{3}{*}{2}    & -011*            \\
+	                      & 10-1\checkmark   \\
+	                      & 1-01\checkmark   \\
+	\hline
+	\multirow{2}{*}{3}    & 1-11\checkmark   \\
+	                      & 11-1\checkmark   \\
+	\hline
+\end{tabular}
+\begin{tabular}[t]{|c|c|c|}
+	\hline
+	\textbf{Nombre de 1s} & \textbf{Minterm} \\
+	\hline
+	0                     & 0\,-\,-\,0*      \\
+	\hline
+	2                     & 1\,-\,-\,1*      \\
+	\hline
+\end{tabular}\vspace*{12pt}
+\doublespacing
+
+\noindent
+À l'aide de ces tableaux, trouvons maintenant les \textsl{prime implicants}.
+
+\vspace*{-24pt}\singlespacing\noindent
+\begin{center}
+	\begin{tabular}[t]{|c|c|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{Prime implicants}} & \multicolumn{4}{c}{\textbf{Minterms}}\vline                                        \\
+		\cline{2-5}
+		                                           & 0000                                        & 1001       & 1101       & 1111       \\
+		\hline
+		001-                                       &                                             &            &            &            \\
+		\hline
+		-011                                       &                                             &            &            &            \\
+		\hline
+		0\,-\,-\,0                                 & \checkmark                                  &            &            &            \\
+		\hline
+		1\,-\,-\,1                                 &                                             & \checkmark & \checkmark & \checkmark \\
+		\hline
+	\end{tabular}
+\end{center}
+\doublespacing
+
+\noindent
+Ainsi, selon cette table, la simplification de la function logique $F$ est:
+\vspace*{-12pt}
+\begin{equation}
+	F(A,B,C,D)=\bar{A}\bar{D}+ AD
+\end{equation}
+
+\pagebreak
+\section{Conception schématique des circuits combinatoires}
+\subsection{Partie a}
+Concevoir la table de vérité de l'afficheur. Sur la carte, pour allumer un segment de de l'afficheur, il faudra générer
+le signal 0 et le signal 1 pour l'éteindre.
+
+\singlespacing
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{$D_3$} & \textbf{$D_2$} & $D_1$ & $D_0$ & Chiffres \& Lettres & \textbf{$S_0$} & \textbf{$S_1$} & \textbf{$S_2$} & $S_3$ & $S_4$ & \textbf{$S_5$} & \textbf{$S_6$} \\ \hline
+		0              & 0              & 0     & 0     & 0                   & 0              & 0              & 0              & 0     & 0     & 0              & 1              \\ \hline
+		0              & 0              & 0     & 1     & 1                   & 1              & 0              & 0              & 1     & 1     & 1              & 1              \\ \hline
+		0              & 0              & 1     & 0     & 2                   & 0              & 0              & 1              & 0     & 0     & 1              & 0              \\ \hline
+		0              & 0              & 1     & 1     & 3                   & 0              & 0              & 0              & 0     & 1     & 1              & 0              \\ \hline
+		0              & 1              & 0     & 0     & 4                   & 1              & 0              & 0              & 1     & 1     & 0              & 0              \\ \hline
+		0              & 1              & 0     & 1     & 5                   & 0              & 1              & 0              & 0     & 1     & 0              & 0              \\ \hline
+		0              & 1              & 1     & 0     & 6                   & 0              & 1              & 0              & 0     & 0     & 0              & 0              \\ \hline
+		0              & 1              & 1     & 1     & 7                   & 0              & 0              & 0              & 1     & 1     & 1              & 1              \\ \hline
+		1              & 0              & 0     & 0     & 8                   & 0              & 0              & 0              & 0     & 0     & 0              & 0              \\ \hline
+		1              & 0              & 0     & 1     & 9                   & 0              & 0              & 0              & 0     & 1     & 0              & 0              \\ \hline
+		1              & 0              & 1     & 0     & A                   & 0              & 0              & 0              & 1     & 0     & 0              & 0              \\ \hline
+		1              & 0              & 1     & 1     & b                   & 1              & 1              & 0              & 0     & 0     & 0              & 0              \\ \hline
+		1              & 1              & 0     & 0     & -                   & d              & d              & d              & d     & d     & d              & d              \\ \hline
+		1              & 1              & 0     & 1     & -                   & d              & d              & d              & d     & d     & d              & d              \\ \hline
+		1              & 1              & 1     & 0     & -                   & d              & d              & d              & d     & d     & d              & d              \\ \hline
+		1              & 1              & 1     & 1     & -                   & d              & d              & d              & d     & d     & d              & d              \\ \hline
+	\end{tabular}
+\end{center}
+
+\pagebreak
+\subsection{Partie b}
+Simplifier la SOP des functions logiques contrôlant les segments 4 et 6 avec la méthode de Karnaugh.
+\subsubsection{Simplification $S_4$}
+\begin{center}
+\begin{karnaugh-map}[4][4][1][$D_0$][$D_1$][$D_2$][$D_3$]
+\minterms{1,3,4,5,7,9}
+\terms{12,13,14,15}{$d$}
+\implicant{1}{7}
+\implicant{4}{13}
+\implicant{1}{9}
+\end{karnaugh-map}
+\end{center}
+\vspace*{-36pt}
+L'équation simplifiée est donc:
+\begin{equation}
+	S_4=\bar{D_3}D_0+D_2\bar{D_1}+\bar{D_1}D_0
+\end{equation}
+
+\subsubsection{Simplification $S_6$}
+\begin{center}
+\begin{karnaugh-map}[4][4][1][$D_0$][$D_1$][$D_2$][$D_3$]
+\minterms{0,1,7}
+\terms{12,13,14,15}{$d$}
+\implicant{0}{1}
+\implicant{7}{15}
+\end{karnaugh-map}
+\end{center}
+\vspace*{-36pt}
+L'équation simplifiée est donc:
+\begin{equation}
+	S_6=\bar{D_3}\bar{D_2}\bar{D_1}+D_2D_1D_0
+\end{equation}
+
+\pagebreak
+\subsection{Quartus}
+Voici maintenant le schéma résultant de la synthèse du circuit dans \textsl{Quartus}. Notez que pour montrer les symbols \textsl{VCC} et \textsl{GND}, l'option \textsl{Show constant value} est décochée. Le même \textsl{GND} est lié à \textsl{data2}, \textsl{data4} et \textsl{data5} dans le \textsl{Mux8}, mais ils sont montrés séparément dans le schéma.
+
+\imagecenter[9/10]{quartus_schematics.pdf}
+
+% END OF DOCUMENT =====================================================================================================
+% % List of figures/tables
+% \pagebreak
+% \begin{appendix}
+%   \phantomsection\listoffigures
+%   \phantomsection\listoftables
+% \end{appendix}
+
+% \pagebreak\phantomsection\printbibliography[heading=bibintoc]
+%\nocite{}
+\end{document}
