@@ -1,84 +1,41 @@
 /*
- * To change this license header, choose License Headers in Project Properties. To change this
- * template file, choose Tools | Templates and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 package heapsort;
 
 /**
- *
  * @author Lena
  */
 public class HeapSort {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int[] array = new int[10];
+        array[0] = 56;
+        array[1] = 2;
+        array[3] = -78;
+        array[4] = 100;
+        array[5] = 42;
+        array[6] = 0;
+        array[7] = 99;
+        array[8] = -23;
+        array[9] = 17;
 
-    private int[] array;
 
-    public HeapSort(int[] anArray) {
-        array = anArray;
-    }
-
-    public void sort() {
-        int n = array.length - 1;
-
-        for (int i = (n - 1) / 2; i >= 0; i--) {
-            fixHeap(i, n);
+        System.out.print("[");
+        for (int e : array) {
+            System.out.print(e + ", ");
         }
-
-        while (n > 0) {
-            swap(0, n);
-            n--;
-            fixHeap(0, n);
-        }
-    }
-
-    private void fixHeap(int rootIndex, int lastIndex) {
-        // Remove root
-        int rootValue = array[rootIndex];
-
-        // Promote children while they are larger than the root
-        int index = rootIndex;
-        boolean more = true;
-
-        while (more) {
-            int childIndex = getLeftChildIndex(index); // 2 * index + 1
-
-            if (childIndex <= lastIndex) {
-                // Use right child instead if it is larger
-                int rightChildIndex = getRightChildIndex(index);// 2 * index + 2
-
-                if (rightChildIndex <= lastIndex && array[rightChildIndex] > array[childIndex]) {
-                    childIndex = rightChildIndex;
-                }
-
-                if (array[childIndex] > rootValue) {
-                    // Promote child
-                    array[index] = array[childIndex];
-                    index = childIndex;
-                } else {
-                    // Root value is larger than both children
-                    more = false;
-                }
-            } else {
-                // No children
-                more = false;
-            }
-        }
-
-        // Store root value in vacant slot
-        array[index] = rootValue;
-    }
-
-    private void swap(int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-
-    private static int getLeftChildIndex(int index) {
-        return 2 * index + 1;
-    }
-
-    private static int getRightChildIndex(int index) {
-        return 2 * index + 2;
+        System.out.println("]");
+        HeapSorter hs = new HeapSorter(array);
+        hs.sort();
     }
 }
+
+
+for i = 0; i<n, i++
