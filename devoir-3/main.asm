@@ -1,5 +1,12 @@
-# heap and heapSort implemented in MIPS assembly language
-# Authors : Etienne Collin and Justin Villeneuve
+# --------------------
+# Description:
+# Heap and heapSort implemented in MIPS assembly language
+# --------------------
+# Authors :
+# Etienne Collin 20237904
+# Ange Lilian Tchomtchoua Tokam 20230129
+# Justin Villeneuve 20132792
+# --------------------
 
 .data
 arrayStart:			.word	0x10040000							# Address of first element of array
@@ -22,19 +29,20 @@ main:
 	jal	exit
 
 # --------------------
-# The function initializes an array of n elements from address arrayStart
+# Initializes an array of n elements from address arrayStart
 # and stores the array size in the variable n.
 # --------------------
 # Parameters:
-# No parameters.
+# No parameters used
 # --------------------
 # Used variables:
-# s0: array address
-# s1: address of current element in array
-# s2: size of the array - 1
-# s3: counter
+# s0: Array address
+# s1: Address of current element in array
+# s2: Size of the array - 1
+# s3: Counter
 # --------------------
-# Returns: void
+# Returns:
+# No return
 # --------------------
 init:	
 	# Ask the user the length of the array
@@ -81,16 +89,17 @@ initExit:
 	jr		$ra								# Return
 
 # --------------------
-# The function heapSort sorts an array of n elements from address arrayStart.
+# Sorts an array of n elements from address arrayStart.
 # --------------------
 # Parameters:
-# No parameters.
+# No parameters used
 # --------------------
 # Variables used:
-# $s0: index of last element in array
+# $s0: Index of last element in array
 # $s1: heapSortBuildHeap counter, initialized at i = (n - 1)/2 
 # --------------------
-# Returns: void
+# Returns:
+# No return
 # --------------------
 heapSort:
 	# Store return address
@@ -159,17 +168,18 @@ heapSortExit:
 	
 
 # --------------------
-# The function printArray prints an array of n elements from address arrayStart.
+# Prints an array of n elements from address arrayStart.
 # --------------------
 # Parameters:
-# No parameters.
+# No parameters used
 # --------------------
 # Variables used:
 # $s0: Address of the array
 # $s1: Last index of array
 # $s2: Index in array (Counter)
 # --------------------
-# Returns: void
+# Returns:
+# No return
 # --------------------
 printArray:
 	# Store registers getting overridden
@@ -237,54 +247,64 @@ printArrayExit:
 	jr		$ra								# Return
 	
 # --------------------
-# The function takes no parameters and terminates the program.
+# Terminates the program.
+# --------------------
+# Parameters:
+# No parameters used
+# --------------------
+# Registers used:
+# No registers used
+# --------------------
+# Returns:
+# No return
 # --------------------
 exit:
 	li		$v0,	10						# Terminate execution
 	syscall
 
 # --------------------
-# The function takes two parameters and fixes a heap stored from address arrayStart.
+# Fixes a heap stored from address arrayStart.
 # --------------------
 # Parameters:
-# $a0 = root index of the heap to fix (in the array)
-# $a1 = last index of the heap to fix (in the array)
+# $a0: Root index of the heap to fix (in the array)
+# $a1: Last index of the heap to fix (in the array)
 # --------------------
-# Variables used:
-# $s0 = array address
-# $s1 = root value
-# $s2 = left child index
-# $s3 = right child index
-# $s4 = left child value
-# $s5 = right child value
+# Registers used:
+# $s0: Array address
+# $s1: Root value
+# $s2: Left child index
+# $s3: Right child index
+# $s4: Left child value
+# $s5: Right child value
 # --------------------
-# Returns: void
+# Returns:
+# No return
 # --------------------
 fixHeap:
 	# Store return address
-	addi	$sp,	$sp,	-28			# Allocate 7 words
-	sw		$ra,	24($sp)				# Store return address
+	addi	$sp,	$sp,	-28					# Allocate 7 words
+	sw		$ra,	24($sp)						# Store return address
 	# Store registers getting overridden
-	sw		$s0,	20($sp)					# Store $s0
-	sw		$s1,	16($sp)					# Store $s1
-	sw		$s2,	12($sp)					# Store $s2
-	sw		$s3,	8($sp)					# Store $s3
-	sw		$s4,	4($sp)					# Store $s4
-	sw		$s5,	0($sp)					# Store $s5
+	sw		$s0,	20($sp)						# Store $s0
+	sw		$s1,	16($sp)						# Store $s1
+	sw		$s2,	12($sp)						# Store $s2
+	sw		$s3,	8($sp)						# Store $s3
+	sw		$s4,	4($sp)						# Store $s4
+	sw		$s5,	0($sp)						# Store $s5
 		
 	# Load array start
 	la		$s0,	arrayStart
 	lw		$s0,	0($s0)
 	
 	# Get value of root
-	sll		$t0,	$a0,	2			# i = rootIndex * 4
-	add		$t0,	$s0,	$t0			# Get address of index i in array
-	lw		$s1,	0($t0)				# Load rootValue into $s1
+	sll		$t0,	$a0,	2					# i = rootIndex * 4
+	add		$t0,	$s0,	$t0					# Get address of index i in array
+	lw		$s1,	0($t0)						# Load rootValue into $s1
 
 fixHeapWhile:	
 	# Get left child index
 	jal		getLeftChildIndex
-	move	$s2,	$v0					# Store left child index into $s2
+	move	$s2,	$v0							# Store left child index into $s2
 
 	# Check if left child index is within bounds
 	bgt		$s2,	$a1,	fixHeapWhileExit	# If left child index > lastIndex, exit while loop
@@ -295,20 +315,20 @@ fixHeapWhile:
 
 firstIf:
 	# First comparison
-	bgt		$s3,	$a1,	secondIf	# If right child index <= lastIndex, compare
+	bgt		$s3,	$a1,	secondIf			# If right child index <= lastIndex, compare
 	
 	# Prepare second comparison
 	# Get value of left child
-	sll		$t0,	$s2,	2			# i = rootIndex * 4
-	add		$t0,	$s0,	$t0			# Get address of index i in array
-	lw		$s4,	0($t0)				# Load left child into $s4
+	sll		$t0,	$s2,	2					# i = rootIndex * 4
+	add		$t0,	$s0,	$t0					# Get address of index i in array
+	lw		$s4,	0($t0)						# Load left child into $s4
 	# Get value of right child
-	sll		$t0,	$s3,	2			# i = rootIndex * 4
-	add		$t0,	$s0,	$t0			# Get address of index i in array
-	lw		$s5,	0($t0)				# Load left child into $s5
+	sll		$t0,	$s3,	2					# i = rootIndex * 4
+	add		$t0,	$s0,	$t0					# Get address of index i in array
+	lw		$s5,	0($t0)						# Load left child into $s5
 	
 	# Second comparison
-	bge		$s4,	$s5,	secondIf	# If left child > right child
+	bge		$s4,	$s5,	secondIf			# If left child > right child
 	move	$s2,	$s3
 		
 secondIf:
@@ -335,79 +355,86 @@ fixHeapWhileExit:
 	# Update array
 	sll		$t0,	$a0,	2					# i = rootIndex * 4
 	add		$t0,	$s0,	$t0					# Get address of index i in array
-	sw		$s1,	0($t0)							# array[rootIndex] = rootValue;
+	sw		$s1,	0($t0)						# array[rootIndex] = rootValue;
 	
     
 fixHeapExit:
 	# Reload return address
-	lw		$ra,	24($sp)					# Reload return address
+	lw		$ra,	24($sp)						# Reload return address
 	# Reload overriden registers
-	lw		$s0,	20($sp)					# Reload $s0
-	lw		$s1,	16($sp)					# Reload $s1
-	lw		$s2,	12($sp)					# Reload $s2
-	lw		$s3,	8($sp)					# Reload $s3
-	lw		$s4,	4($sp)					# Reload $s4
-	lw		$s5,	0($sp)					# Reload $s5
+	lw		$s0,	20($sp)						# Reload $s0
+	lw		$s1,	16($sp)						# Reload $s1
+	lw		$s2,	12($sp)						# Reload $s2
+	lw		$s3,	8($sp)						# Reload $s3
+	lw		$s4,	4($sp)						# Reload $s4
+	lw		$s5,	0($sp)						# Reload $s5
 	
-	addi	$sp,	$sp,	28				# Free allocated space
-	jr		$ra								# Return
+	addi	$sp,	$sp,	28					# Free allocated space
+	jr		$ra									# Return
 	
 
 # --------------------
 # Returns the indice of the left child in the data structure called "heap".
 # The left child node of the node with index i has index 2i + 1.
 # --------------------
-# Inputs/Outputs:
-# $a0 = index
-# $v0 = return
+# Parameters:
+# $a0: Index of parent
 # --------------------
-# Returns: void
+# Registers used:
+# No registers used
+# --------------------
+# Returns:
+# $v0: Index of the left child
 # --------------------
 getLeftChildIndex:
 	sll		$v0,	$a0,	1	# 2 * index
 	addi	$v0,	$v0,	1	# (2 * index) + 1
-	jr		$ra					# return
+	jr		$ra					# Return index
 
 # --------------------
 # Returns the indice of the right child in the data structure called "heap".
 # The right child node of the node with index i has index 2i + 2.
 # --------------------
-# Inputs/Outputs:
-# $a0 = index
-# $v0 = return
+# Parameters:
+# $a0: Index of parent
 # --------------------
-# Returns: void
+# Registers used:
+# No registers used
+# --------------------
+# Returns:
+# $v0: Index of the right child
 # --------------------
 getRightChildIndex:
 	sll		$v0,	$a0,	1	# 2 * index
 	addi	$v0,	$v0,	2	# (2 * i) + 2
-	jr		$ra					# return
+	jr		$ra					# Return index
 
 
 # --------------------
-# Swaps two values.
+# Swaps two values of an array.
 # --------------------
 # Parameters:
-# $a0: holds the index of element i
-# $a1: holds the index of element j
+# $a0: Index of element i
+# $a1: Index of element j
 # --------------------
-# Variables used:
-# $s0: array address
-# $s1: address of array[i]
-# $s2: value of array[i]
-# $s3: address of array[j]
-# $s4: value of array[j]
+# Registers used:
+# $s0: Array address
+# $s1: Address of array[i]
+# $s2: Value of array[i]
+# $s3: Address of array[j]
+# $s4: Value of array[j]
 # --------------------
-# Returns: void
+# Returns:
+# No return
 # --------------------
 swap:
 	# Store registers getting overridden
 	addi	$sp,	$sp,	-20			# Allocate 5 words
-	sw		$s0,	16($sp)					# Store $s0
-	sw		$s1,	12($sp)					# Store $s1
-	sw		$s2,	8($sp)					# Store $s2
-	sw		$s3,	4($sp)					# Store $s3
-	sw		$s4,	0($sp)					# Store $s4
+	sw		$s0,	16($sp)				# Store $s0
+	sw		$s1,	12($sp)				# Store $s1
+	sw		$s2,	8($sp)				# Store $s2
+	sw		$s3,	4($sp)				# Store $s3
+	sw		$s4,	0($sp)				# Store $s4
 
 	# Load array start
 	la		$s0,	arrayStart
@@ -428,11 +455,11 @@ swap:
 	sw		$s2,	0($s3)				# array[i] = array[j]
 	
 	# Reload overriden registers
-	lw		$s0,	16($sp)					# Reload $s0
-	lw		$s1,	12($sp)					# Reload $s1
-	lw		$s2,	8($sp)					# Reload $s2
-	lw		$s3,	4($sp)					# Reload $s3
-	lw		$s4,	0($sp)					# Reload $s4
+	lw		$s0,	16($sp)				# Reload $s0
+	lw		$s1,	12($sp)				# Reload $s1
+	lw		$s2,	8($sp)				# Reload $s2
+	lw		$s3,	4($sp)				# Reload $s3
+	lw		$s4,	0($sp)				# Reload $s4
 	
-	addi	$sp,	$sp,	20				# Free allocated space
-	jr $ra			  # return
+	addi	$sp,	$sp,	20			# Free allocated space
+	jr $ra								# Return
