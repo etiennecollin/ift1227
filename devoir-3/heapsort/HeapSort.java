@@ -36,6 +36,3 @@ public class HeapSort {
         hs.sort();
     }
 }
-
-
-for i = 0; i<n, i++
