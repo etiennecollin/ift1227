@@ -1,0 +1,129 @@
+\input{/Users/etiennecollin/github/latex-templates/paths}
+\path{macOS}
+
+\documentclass[12pt]{article}
+\usepackage[english,french]{babel}
+\usepackage{\basepath/packages}
+\usepackage[style=ieee,backref=true,backend=biber,date=iso,datezeros=true,seconds=true]{biblatex}
+
+% DOCUMENT USER SETTINGS ==============================================================================================
+\newcommand{\docAuthorName}{Etienne Collin | 20237904\\Ange Lilian Tchomtchoua Tokam | 20230129\\Justin Villeneuve | 20132792}
+\newcommand{\docAuthorStudentNumber}{20237904}
+\newcommand{\docAuthorTitlePage}{\docAuthorName}
+\newcommand{\docClass}{Architecture des ordinateurs}
+\newcommand{\docClassInstructor}{Professeure Alena Tsikhanovich}
+\newcommand{\docClassNumber}{IFT1227}
+\newcommand{\docClassSection}{Section A}
+\newcommand{\docClassSemester}{H2023}
+\newcommand{\docDueDate}{30 Avril 2023}
+\newcommand{\docDueTime}{23:59}
+\newcommand{\docSubtitle}{Processeur MIPS}
+\newcommand{\docTitle}{Devoir 4}
+\input{\template/basic/page_settings}       % Imports custom page settings
+\input{\template/basic/environment}         % Imports custom environments and definitions
+
+% \fancyhf[HR]{\docClassTime}               % Removes student number from right header
+
+% SOURCE ==============================================================================================================
+\begin{document}
+\input{\template/basic/title_page_udem}
+
+% START OF DOCUMENT ===================================================================================================
+
+\section{Solution schématique du processeur MIPS un cycle}
+\subsection{Chemin de données}
+\imagecenter[1]{schematics_simple.jpg}
+
+\pagebreak
+\subsection{Contrôleur}
+\imagecenter[1]{controller.jpg}
+
+\pagebreak
+\section{Solution schématique du processeur MIPS multicycles}
+\subsection{Chemin de données}
+\imagecenter[1]{schematics_multi.jpg}
+
+\pagebreak
+\subsection{Contrôleur}
+\imagecenter[1]{controller_multi.jpg}
+
+\pagebreak
+\section{Code Testbench}
+\subsection{MIPS Assembly}
+Voici le code qui a été utilisé pour le testbench écrit en MIPS Assembly:
+\singlespacing
+\scriptsize
+\begin{verbatim}
+        addi        $v0,    $0,         5       # $v0(2)=5
+        addi        $v1,    $0,         12      # $v1(3)=12
+        addi        $a3,    $v1,        -9      # $a3(7)=$v1(3)(12)-9=3
+        or          $a0,    $a3,        $v0     # $a0(4)=$a3(7) or $v0(2)=3 or 5=7
+        and         $a1,    $v1,        $a0     # $a1(5)=$v1(3) and $a0(4)= 12 and 7=4
+        add         $a1,    $a1,        $a0     # $a1(5)=$a1(5)+$a0(4)=4+7=11
+        beq         $a1,    $a3,        end     # $a1(5)==$a3(7) ? end: PC=PC+4; 11==3 ? PC=PC+4
+        slt         $a0,    $v1,        $a0     # $v1(3) < $a0(4) ? $a0=1 : $a0=0; 12 < 7 => $a0=0
+        beq         $a0,    $0,         ar1     # $a0(4)==0 ? ar1 : PC=PC+4; 0==0 goto ar1
+        addi        $a1,    $0,         0       #
+ar1:    slt         $a0,    $a3,        $v0     # $a3(7) < $v0(2) ? $a0(4)=1 : $a0=0; 3 < 5, $a0=1
+        add         $a3,    $a0,        $a1     # $a3(7)=$a0(4)+$a1(5); 1+11=12
+        sub         $a3,    $a3,        $v0     # $a3(7)=$a3(7)-$v0(2); 12-5=7
+        sw          $a3,    68($v1)             # $a3(7) -> M[68+$v1(3)]; 7 -> M[68+12=80]              # Test 1
+        lw          $v0,    80($0)              # $v0(2)=M[80+0]; $v0=7
+        j           end                         # goto end
+        addi        $v0,    $0,         1
+end:    sw          $v0,    60($0)              # $v0(2) write M[60]; M[60]=7;                          # Test 2
+        jal         tag                         # Jump to testJal
+        sw          $v0,    40($0)              # This should not be executed if jump is ok
+tag:    sw          $ra,    40($0)              # $ra=19 -> M[40]                                       # Test 3
+        addi        $t0,    $0,         3       # $t0=3
+        addi        $t1,    $0,         5       # $t1=5
+        index2Adr   $t0,    $t0,        $t1     # $t0=4*$t0+$t1=4*3+5=17
+        sw          $t0,    20($0)              # $t0=17 -> M[20]                                       # Test 4
+\end{verbatim}
+\normalsize
+\doublespacing
+
+\pagebreak
+\subsection{MIPS Hexadécimal}
+Voici le code précédent traduit en hexadécimal:
+\singlespacing
+\begin{verbatim}
+0x20020005
+0x2003000c
+0x2067fff7
+0x00e22025
+0x00642824
+0x00a42820
+0x10a7000a
+0x0064202a
+0x10800001
+0x20050000
+0x00e2202a
+0x00853820
+0x00e23822
+0xac670044
+0x8c020050
+0x08000011
+0x20020001
+0xac02003C
+0x0C000014
+0xAC020028
+0xAC1F0028
+0x20080003
+0x20090005
+0x0109403F
+0xAC080014
+\end{verbatim}
+\doublespacing
+
+% END OF DOCUMENT =====================================================================================================
+% % List of figures/tables
+% \pagebreak
+% \begin{appendix}
+%   \phantomsection\listoffigures
+%   \phantomsection\listoftables
+% \end{appendix}
+
+% \pagebreak\phantomsection\printbibliography[heading=bibintoc]
+%\nocite{}
+\end{document}
