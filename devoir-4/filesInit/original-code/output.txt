@@ -1,0 +1,41 @@
+Analyzing vhd files...
+Compiling entity testbench...
+Generating testbench.ghw file...
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:2024:17:@0ms:(assertion warning): CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+../../src/synopsys/std_logic_arith.vhdl:255:21:@0ms:(assertion warning): There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+./testbench.vhd:46:17:@135ns:(report note): dataadr=0x00000050; writedata=0x00000007
+./testbench.vhd:49:37:@135ns:(report note): test 1 done
+./testbench.vhd:46:17:@165ns:(report note): dataadr=0x0000003C; writedata=0x00000007
+./testbench.vhd:54:37:@165ns:(report note): test 2 done
